@@ -1,0 +1,55 @@
+baseURL = "https://fortinetsecdevops.github.io/technical-recipe-cfos/"
+languageCode = "en-US"
+defaultContentLanguage = "en"
+
+theme = ["hugo-notice", "hugo-theme-learn"]
+metaDataFormat = "yaml"
+defaultContentLanguageInSubdir= "false"
+uglyurls = "true"
+enableEmoji = true
+
+
+[params]
+  description = "Workshop Documentation"
+  # Shows a checkmark for visited pages on the menu
+  showVisitedLinks = true
+  # Disable search function. It will hide search bar
+  disableSearch = false
+  # Javascript and CSS cache are automatically busted when new version of site is generated. 
+  # Set this to true to disable this behavior (some proxies don't handle well this optimization)
+  disableAssetsBusting = false
+  # Set this to true to disable copy-to-clipboard button for inline code.
+  disableInlineCopyToClipBoard = false
+  # A title for shortcuts in menu is set by default. Set this to true to disable it. 
+   disableShortcutsTitle = false
+
+  landingPageURL = "/en/technical-recipe-cfos"
+  landingPageName = "<i class='fas fa-home'></i> Home"
+
+  # If set to false, a Home button will appear below the search bar on the menu.
+  # It is redirecting to the landing page of the current language if specified. (Default is "/")
+  disableLandingPageButton = true
+  # When using mulitlingual website, disable the switch language button.
+  disableLanguageSwitchingButton = true
+  # Hide breadcrumbs in the header and only show the current page title
+  disableBreadcrumb = false
+  # Hide Next and Previous page buttons normally displayed full height beside content
+  disableNextPrev = false
+  # Order sections in menu by "weight" or "title". Default to "weight"
+  ordersectionsby = "weight"
+  # Change default color scheme with a variant one. Can be "red", "blue", "green".
+  themeVariant = "red"
+
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-graduation-cap'></i> FortiOS 7.2 Admin Guide "
+url = "https://docs.fortinet.com/document/fortigate/7.2.2/administration-guide/763117/terraform-fortios-as-a-provider"
+weight = 20
+
+[markup]
+  defaultMarkdownHandler = "goldmark"
+  [markup.goldmark]
+    hrefTargetBlank = true
+
