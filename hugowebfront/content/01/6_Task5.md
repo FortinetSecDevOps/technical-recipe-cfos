@@ -1,27 +1,29 @@
 ---
-title: "Task 5 - Create a ConfigMap with cFOS license"
+title: "Task 5 - Create ConfigMap"
 chapter: true
 weight: 6
 ---
 
 ### Task 5 - Create a ConfigMap with cFOS license
 
-{{< notice note >}}cFOS license is required to run/deploy cFOS.{{< /notice >}}
+{{< notice note >}}License is required to run/deploy **cFOS**.{{< /notice >}}
 
-> **_NOTE:_** cFOS license can either be used inside a configmap or can be imported into cfos using the cfos cli. Using configmap will allow to load license before installing cfos.
+> **_NOTE:_** **cFOS** license can either be used inside a configmap or can be imported into **cFOS** using the cfos cli. Using ***configmap*** will allow to load license before installing **cFOS**.
 
-
-{{< notice info >}}
-##### Below is the format of configmap with license
+{{< notice note >}}
 * Do not forgot the "|" after the license: field.
-* the license text that between the lines "    -----BEGIN FGT VM LICENSE----- " and "     -----END FGT VM LICENSE-----" must not include any hard return.
-* when you copy and paste licens . please remove hard return first**
-* two bash script provided in the github repo  https://github.com/yagosys/202301.git  with name generatecfoslicensefromvmlicense.sh  generatedockersecret.sh to create license file and dockerpullsecret.
+* License text between the lines "    -----BEGIN FGT VM LICENSE----- " and "     -----END FGT VM LICENSE-----" must be formatted properly.
+* You can use the below files (bash scripts) from [GitHub repo](https://github.com/FortinetSecDevOps/technical-recipe-cfos.git) to create license file and dockerpullsecret 
+    * ***generatecfoslicensefromvmlicense.sh*** (create license file)
+    * ***generatedockersecret.sh*** (dockerpullsecret) 
+* You can also use the below script to create a license file. 
+    * Replace the VM license filename with your own license file name. 
+    * The example below assumes you already obtained a FortiGate VM license with the file name FGVMULTM23000010.lic. 
+    * In the directory containing FGVMULTM23000010.lic, paste the below script to generate ConfigMap file.
+    * This script will generate a ***cfos_license.yaml*** file with the necessary ConfigMap format for the **cFOS** license.
 {{< /notice >}}
 
-> **_NOTE:_** You can also use the script below to create a license file. Replace the VM license filename with your own license file name. The example below assumes you have already obtained a FortiGate VM license with the file name FGVMULTM23000010.lic. In the directory containing FGVMULTM23000010.lic, paste the script below to generate the license ConfigMap file.
-
-> This script will generate a cfos_license.yaml file with the necessary ConfigMap format for the cFOS license.
+##### Below is the format of configmap with license
 
 ```
 licensestring=$(sed '1d;$d' FGVMULTM23000010.lic | tr -d '\n')
