@@ -21,7 +21,11 @@ This chapter will guide you through setup EKS cluster.
 |               | (macvlan) |              |
 +---------------+           +--------------+ 
 ```
-
+{{< notice info >}}
+* Cluster POD to POD Traffic: eth0 (Application Pod) <--> eth0 (cFOS Pod).
+* Internet Traffic: Application Pod ---> net1 (cFOS Pod) ---> eth0 (sNAT enabled) ---> Internet.
+* The eth0 interfaces are managed by Multus with delegation to `AWS VPC CNI`, and the net1 interfaces are managed by Multus with delegation to `macvlan CNI`.
+{{< /notice >}}
 
 In this chapter you will perform below tasks:
 
