@@ -1,14 +1,14 @@
 ---
-title: "Task 3 - Deploying EKS Cluster"
+title: "Task 3 - Deploy EKS Cluster"
 chapter: true
 weight: 4
 ---
 
-### Task 3 - Deploying EKS Cluster
+### Task 3 - Deploy EKS Cluster
 
 1. Create ssh key to access eks work node
 
-    Paste below command in your client terminal to create ssh key if not exist 
+    Below command will create ssh key if doesn't exist 
 
     ```
     [ -f ~/.ssh/id_rsa.pub ] || ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa -N ''
@@ -16,18 +16,17 @@ weight: 4
 
 1. Deploy/Create EKS Cluster 
 
-    we use eksctl and eks config file to create EKS cluster.  
+    ***eksctl*** and ***eks config file*** are used to create EKS cluster.  
 
-    below is a standard EKS config with all default configuration
+    Below is a standard EKS config with all default configuration
 
-    *you will need generate your own ssh key , which you can use ssh-keygen and place it under ~/.ssh/id*
-    *the kubernetes serviceCIDR is 10.96.0.0/12*
-    *the VPC has subnet 10.0.0.0/16*
-    *the default region and az is on ap-east-1, you can change to other regions and az if you want*
+    * Generate a ssh key. e.g. you can use `ssh-keygen` and place it under ~/.ssh/id
+    * Kubernetes **service CIDR** is **10.96.0.0/12**
+    * VPC has subnet **10.0.0.0/16**
+    * Default region and az is **ap-east-1**, you can change to other regions and az if you want
+    * Kubernetes version is 1.25
 
-
-    the kubernetes version is 1.25
-    paste below script on your client terminal to create eks cluster 
+    > **_NOTE:_** Run/execute below script on your client terminal to create eks cluster 
 
     ```
     cat << EOF | eksctl create cluster -f -
@@ -109,7 +108,7 @@ weight: 4
 
 1. Validate EKS cluster 
 
-    You will notice below output from above command 
+   > output will be similar as below
 
     ```
     2023-03-31 11:14:02 [ℹ]  eksctl version 0.134.0
@@ -168,11 +167,12 @@ weight: 4
 
 1. Accessing eks cluster
 
-    Once EKS cluster is ready, **kubeconfig** will be modified or created on your client machine which enable you to access the remote cluster. 
+    Once EKS cluster is ready, **kubeconfig** will be modified or created on your client machine which will enable you to access the remote cluster. 
 
-    > **_NOTE:_** you can use `eksctl utils write-kubeconfig`  to re-config the kubeconfig file to access eks if you mess-up the configuration.
+    > **_NOTE:_** You can use `eksctl utils write-kubeconfig` to re-config the **kubeconfig** file to access eks if you mess-up the configuration.
 
-    you shall see a kubernetes cluster with 1 node in ready state, ***Ready*** status indicating that CNI component is also ready. **aws-node DaemonSet** manages the AWS VPC CNI plugin for Kubernetes, which is responsible for assigning AWS VPC IP addresses to Kubernetes pods.
+    * Once deployed, you will see a Kubernetes Cluster with 1 node in ready state, ***Ready*** status indicating that CNI component is also ready. 
+    * **aws-node DaemonSet** manages the AWS VPC CNI plugin for Kubernetes, which is responsible for assigning AWS VPC IP addresses to Kubernetes pods.
     
     To view the environment variables and configuration for the aws-node CNI, you can inspect the **aws-node DaemonSet**.
 
@@ -181,7 +181,7 @@ weight: 4
     kubectl -n kube-system get pod $podname -o jsonpath='{.spec.containers[0].env}' | jq .
     ```
 
-    the output will looks like below
+   > output will be similar as below
 
     ```
     [
@@ -277,13 +277,13 @@ weight: 4
     ]
     ```
 
-    by default, there is no pod resource created in default namespace. 
+    > **_NOTE:_** By default, there is no pod resource(s) created in default namespace. 
 
     ```
     kubectl get node -o wide  && kubectl get pod 
     ```
     
-    you shall see output 
+   > output will be similar as below
     
     ```
     ✗ kubectl get node -o wide

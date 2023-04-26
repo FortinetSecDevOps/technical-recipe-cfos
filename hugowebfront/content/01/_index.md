@@ -10,7 +10,7 @@ weight: 1
 
 {{< notice note >}}Prerequisites: AWS account {{< /notice >}}
 
-In this chapter you will perform below steps:
+In this chapter you will perform below tasks:
 
 * Setup Client Machine to deploy Kubernetes and **cFOS**
 * Build Docker Image with **cFOS** firmware
