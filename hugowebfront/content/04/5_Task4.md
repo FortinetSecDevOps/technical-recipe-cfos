@@ -1,23 +1,36 @@
 ---
-title: "Task 4 - Create cFOS daemonSet"
+title: "Task 4 - Create cFOS DaemonSet"
 chapter: true
 weight: 5
 ---
 
-### Task 4 - create cFOS daemonSet
+### Task 4 - Create cFOS DaemonSet
 
-* we will create cfos as daemonSet, so each node will have single cfos POD
-* cfos will be attached to net-attach-def CRD which created in previous step
-* cfos configured a clusterIP service for restapi port
-* cfos use annotation to attach to crd. the "k8s.v1.cni.cncf.io/networks" means for secondary network, the default interface inside cfos will be net1 by default
-* cfos will have fixed ip "10.1.200.252/32" which is the range of crd cni configuration
-* cfos can also have a fixed mac address
-* the linux capabilities NET_ADMIN, SYS_AMDIN, NET_RAW are required for use ping, sniff and syslog
-* the cfos image will be pulled from docker hub with pull secret
-* the  cfos container mount /data to a directory in host work node, the /data save license, and configuration file etc.,
-* you need to change the line "image: interbeing/fos:v7231x86 to your actual image respository
+* We will create **cFOS** as DaemonSet, so each node will have single **cFOS** POD.
 
-copy and paste below code to your terminal window to create cfos DaemonSet
+* **cFOS** will be attached to ***net-attach-def CRD*** which was created earlier.
+
+* **cFOS** is configured as a ***ClusterIP service*** for ***restapi port***.
+
+* **cFOS** will use annotation to attach to CRD. 
+
+* `k8s.v1.cni.cncf.io/networks` means ***secondary network***.
+
+* Default interface inside **cFOS** is ***net1***.
+
+* **cFOS** will have fixed IP ***10.1.200.252/32*** which is the range of CRD cni configuration.
+
+* **cFOS** can also have a fixed mac address.
+
+* Linux capabilities like NET_ADMIN, SYS_AMDIN, NET_RAW are required for ping, sniff and syslog.
+
+* **cFOS** image will be pulled from Docker Hub with pull secret.
+
+* **cFOS** container will mount ***/data*** to a directory in host work node where license file and configuration file etc. are saved in it.
+
+> **_NOTE:_** Make sure to change the line ***image: interbeing/fos:v7231x86*** to your actual image respository.
+
+> By using below code in your client terminal window, will create **cFOS** DaemonSet
 
 ```
 cat << EOF | kubectl create -f - 

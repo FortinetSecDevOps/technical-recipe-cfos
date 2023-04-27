@@ -7,13 +7,19 @@ weight: 4
 ### Task 3 - Create role for cFOS
 
 
-* cfos pod  will need permission to communicate with kubernetes API to read the configmap and also need able to read secret to pull docker image so we need assign role with permission to cfos POD based on least priviledge principle
+* **cFOS** pod would need a role to  
+   * Communicate with kubernetes API to read the ConfigMap 
+   * Read secret to pull docker image 
 
-* below we create ClusterRole to read configmaps and secrets and bind them to default serviceaccount
+> **_NOTE:_** So by following principle of least privilege, we need to assign a role to **cFOS** POD.
 
-* when we create cfos POD with default serviceaccount, the pod will have permission to read configmap and secret
+* Below we create a ClusterRole to read ConfigMap and Secret, and bind them to default ServiceAccount.
 
-   copy and paste below code to your client terminal window to create role for cFOS
+> **_NOTE:_** When a **cFOS** POD is created with default ServiceAccount, the pod will have permission to read ConfigMap and Secret.
+
+Use the below copy and paste below code to your client terminal window to create role for 
+
+> By using below code in your client terminal window, will create role for **cFOS**
 
    ```
    cat << EOF | kubectl create -f - 
@@ -73,7 +79,7 @@ weight: 4
    EOF
    ```
 
-   you shall see  output like below
+> output will be similar as below
 
    ```
    clusterrole.rbac.authorization.k8s.io/configmap-reader created

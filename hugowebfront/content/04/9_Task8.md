@@ -1,22 +1,27 @@
 ---
-title: "Task 8 - check cFOS POD description"
+title: "Task 8 - Get cFOS POD description"
 chapter: true
 weight: 9
 ---
 
-### Task 8 - check cFOS POD description
+### Task 8 - Get cFOS POD description
 
-* the serviceAccount is default which granted read configmap and secret in previous step
-* the annotations usr k8s.v1.cni.cncf.io/networks to tell CRD to assign IP for it
-* in the events log, the interface eth0 and net1 are from multus which means multus is the default CNI for eks
-* multus delegate to aws-cni for eth0 interface, multus delegate to macvlan cni for net1 interface
+* Default ServiceAccount is used which was granted with a permission to read ***ConfigMap*** and ***Secret*** in earlier chapter.
+
+* Annotations ***k8s.v1.cni.cncf.io/networks*** is used to assign IP.
+
+* Looking at the events log, the interface ***eth0*** and ***net1*** are from ***Multus*** which means it is the default ***CNI*** for EKS.
+
+* ***Multus*** delegates to ***aws-cni*** for ***eth0*** interface and to ***macvlan cni*** for ***net1*** interface.
+
+> Below command will get description of the cFOS POD
 
 ```
 cfospodname=$(kubectl get pod -l app=fos -o jsonpath='{.items[0].metadata.name}')
 kubectl describe po/$cfospodname
 ```
 
-output should be similar as below
+> output will be similar as below
 
 ```
 Name:             fos-deployment-x8vzj

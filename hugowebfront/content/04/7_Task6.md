@@ -1,18 +1,21 @@
 ---
-title: "Task 6 - check cFOS container log"
+title: "Task 6 - Verify cFOS Logs"
 chapter: true
 weight: 7
 ---
 
-### Task 6 - check cFOS container log
+### Task 6 - Verify cFOS Container logs
 
-below you will see that cFOS container have sucessfully load the license from configmap and system is ready
+* From the below commands, you will notice the **cFOS** container has sucessfully loaded the license from ConfigMap and system is ready.
 
-copy and paste below command to check cFOS license 
+
+> Below command will check **cFOS** license
 
 ```
 kubectl logs -f $(kubectl get pod -l app=fos -o jsonpath='{.items[0].metadata.name}')
 ```
+
+> output will be similar as below
 
 ```
 System is starting...

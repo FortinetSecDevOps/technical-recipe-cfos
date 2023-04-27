@@ -1,27 +1,27 @@
 ---
-title: "Task 7 - check the ip address and routing table of cfos container "
+title: "Task 7 - Verify IP address and Routing Table"
 chapter: true
 weight: 8
 ---
 
-### Task 7 - check the ip address and routing table of cfos container 
+### Task 7 - Verify IP address and Routing Table of cfos container
 
-below you will see cfos container has eth0 and net1 interface
+* Once **cFOS** is deployed, you will notice container has ***eth0*** and ***net1*** interfaces.
+   * ***net1 interface*** is created by ***macvlan cni***
+   * ***eth0 interface*** is created by ***aws vpc cni***
 
-net1 interface is created by macvlan cni
+* **cFOS** container has default route pointing to ***`169.254.1.1`*** which has fixed mac address from ***veth pair interface*** on the host side (enixxx interface on host).
 
-eth0 interface is created by aws vpc cni
-
-*cfos container have default route point to 169.254.1.1 which has fixed mac address from veth pair interface on the host side (enixxx interface on host)*
-
-paste below command to check cfos ip address 
+> Below command will get IP address details of the **cFOS** container
 
 ```
 cfospodname=$(kubectl get pod -l app=fos -o jsonpath='{.items[0].metadata.name}')
 kubectl exec -it po/$cfospodname -- ip a
 ```
 
-the output shall like below. you will expect see different ip address on eth0. but the net1 ip address shall be 10.1.200.252. 
+> output will be similar as below. 
+
+> **_NOTE:_** You can notice different ip address on eth0, but the net1 ip address will be 10.1.200.252. 
 
 ```
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
@@ -42,17 +42,16 @@ the output shall like below. you will expect see different ip address on eth0. b
        valid_lft forever preferred_lft forever
     inet6 fe80::8c2c:2aff:fe6b:9049/64 scope link
        valid_lft forever preferred_lft forever
-
 ```
 
-paste below command to check ip routing table 
+> Below command will get IP routing table of the **cFOS** container
 
 ```
 cfospodname=$(kubectl get pod -l app=fos -o jsonpath='{.items[0].metadata.name}')
 kubectl exec -it po/$cfospodname -- ip route
 ```
 
-output should be similar as below
+> output will be similar as below. 
 
 ```
 default via 169.254.1.1 dev eth0
