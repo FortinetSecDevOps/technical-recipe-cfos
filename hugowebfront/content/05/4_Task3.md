@@ -1,14 +1,19 @@
 ---
-title: "Task 3 - create another deployment with different label"
+title: "Task 3 - Create other deployment"
 chapter: true
 weight: 4
 ---
 
-### Task 3 - create another deployment with different label
+### Task 3 - Create deployment with a different label
 
-we want demo to support multiple application based on the different label. so we create one more deployment with different label.
+* To support multiple application(s) based on label(s), for this Demo, will create one more deployment with different label.
+
 paste below script to create another deployment, we assign label to pod app=newtest 
 in this deployment, we use initContainers to insert a route for this POD.  this route is telling for POD to POD traffic from eth0. not goes to cFOS. but continue to use aws VPC CNI created cluster network. 
+
+> Below command will create another deployment
+
+> **_NOTE:_**  POD is assigned with a label ***app=newtest*** in this deployment. We use ***initContainers*** to insert a ***route*** for this POD. By this route, POD to POD traffic from ***eth0*** will traverse through ***aws VPC CNI*** created cluster network but NOT through **cFOS**.
 
 ```
 cat << EOF | kubectl create -f -
@@ -46,7 +51,13 @@ spec:
 EOF
 ```
 
-use `kubectl get pod -l app=newtest` to check the pod `
+> Below command will get status of the POD
+
+```
+  kubectl get pod -l app=newtest
+````
+
+> output will be similar as below
 
 ```
 ➜  ✗ kubectl  get pod -l app=newtest

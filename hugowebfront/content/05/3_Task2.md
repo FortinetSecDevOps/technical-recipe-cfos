@@ -1,16 +1,18 @@
 ---
-title: "Task 2 - check the deployment result"
+title: "Task 2 - Validate deployment"
 chapter: true
 weight: 3
 ---
 
-### Task 2 - check the deployment result
+### Task 2 - Validate deployment result
+
+> Below command will get status of the deployment
 
 ```
 kubectl rollout status deployment multitool01-deployment
 ```
 
-you shall see 
+> output will be similar as below
 
 ```
 ✗ kubectl rollout status deployment multitool01-deployment
@@ -21,13 +23,13 @@ Waiting for deployment "multitool01-deployment" rollout to finish: 3 of 4 update
 deployment "multitool01-deployment" successfully rolled out
 ```
 
-check the pod status 
+> Below command will get status of the POD
 
 ```
 kubectl get pod -l app=multitool01
 ```
 
-you shall see 
+> output will be similar as below
 
 ```
 NAME                                     READY   STATUS    RESTARTS   AGE

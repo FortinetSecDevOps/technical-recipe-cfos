@@ -1,12 +1,12 @@
 ---
-title: "Task 6 - check cFOS firewall addressgroup"
+title: "Task 6 - cFOS firewall addressgroup"
 chapter: true
 weight: 7
 ---
 
-### Task 6 - check cFOS firewall addressgroup
+### Task 6 - Check cFOS firewall addressgroup
 
-* the firewall addrgrp has each POD IP in the group
+The firewall addrgrp has each POD IP in the group
 
 ```
 cfospod=$(kubectl get pod | grep fos | awk '{print $1}')

@@ -1,12 +1,12 @@
 ---
-title: "Task 4 - create a clientpod to manage the networkpolicy and update pod ip address to cFOS"
+title: "Task 4 - Create Client POD"
 chapter: true
 weight: 5
 ---
 
-### Task 4 - create a clientpod to manage the networkpolicy and update pod ip address to cFOS
+### Task 4 - Create Client POD to manage Network Policy and update POD IP address to cFOS
 
-we create a pod with name clientpod to create firewall policy for cFOS and it will also keep POD IP address in sync between cFOS and kubernetes.
+* we create a pod with name clientpod to create firewall policy for cFOS and it will also keep POD IP address in sync between cFOS and kubernetes.
 as POD ip address is not fixed. the IP address will change due to scale , restart etc . we will keep the the POP ip address in sync with cFOS addressgroup.
 basically, this clientpod will  
 

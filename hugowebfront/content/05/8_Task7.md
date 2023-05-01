@@ -1,5 +1,5 @@
 ---
-title: "Task 7 - check cFOS firewall policy"
+title: "Task 7 - cFOS firewall policy"
 chapter: true
 weight: 8
 ---

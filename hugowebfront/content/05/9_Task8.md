@@ -1,12 +1,12 @@
 ---
-title: "Task 8 - verify whether cFOS is in healthy state"
+title: "Task 8 - Verify cFOS state"
 chapter: true
 weight: 9
 ---
 
-### Task 8 - verify whether cFOS is in healthy state
+### Task 8 - Verify if cFOS is in healthy state
 
-the cFOS might running to into some SSL related issue which is tobefixed, if that happen, use below script to fix it 
+> **_NOTE:_** **cFOS** might run into some SSL related issue which needs to be fixed. Below script will help fixing it 
 
 ```
 #!/bin/bash

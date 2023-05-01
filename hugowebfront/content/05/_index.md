@@ -27,8 +27,20 @@ weight: 5
 
 Amazon EKS supports Multus, a Container Network Interface (CNI) plugin that enables you to attach multiple network interfaces to your Kubernetes pods. This can be useful for workloads requiring additional network isolation or advanced networking features. In this demo, application pod will use additional network to communicate with cFOS. so we will need install multus with additional CNI. 
 
-> **_NOTE:_** To use Multus on Amazon EKS, you'll need to install and configure it manually. 
+In this chapter you will perform below tasks:
 
-Tasks
-
-* create demo application deployment
+* Deploy application
+* Validate deployment
+* Create other deployment
+* Create Client POD
+* Access internet via **cFOS**
+* **cFOS** firewall addressgroup
+* **cFOS** firewall policy
+* Verify **cFOS** state
+* Validate Web Filter feature
+* Scale the app Deployment
+* Verify **cFOS** firewall addressgroup
+* Use **eksctl** to scale nodes
+* Check new cFOS DaemonSet on new work node
+* Scale-out application
+* Verify POD accessibility

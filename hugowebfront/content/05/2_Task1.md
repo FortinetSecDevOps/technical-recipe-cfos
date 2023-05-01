@@ -1,23 +1,24 @@
 ---
-title: "Task 1 - create demo application deployment"
+title: "Task 1 - Deploy application"
 chapter: true
 weight: 2
 ---
 
-### Task 1 - create demo application deployment 
+### Task 1 - Deploy demo application 
 
-the replicas=4 mean it will create 4 POD on this work node
+* replicas=4 means, it will create 4 POD(s) on this work node
 
-annotations k8s.v1.cni.cncf.io/networks to tell CRD to attach the pod to network cfosdefaultcni5 with net1 interface
+* annotations ***k8s.v1.cni.cncf.io/networks*** to tell CRD to attach the POD to network ***cfosdefaultcni5*** with ***net1*** interface.
 
-the POD will get default-route 10.1.200.252 which is the ip of cfos on net1 interface
+* POD will get ***default-route 10.1.200.252*** which is the IP of **cFOS** on ***net1 interface***.
 
-the net1 interface use network cfosdefaultcni5 to communicate with cfos net1
+* The ***net1 interface*** will use network ***cfosdefaultcni5*** to communicate with **cFOS** ***net1***.
 
-* the POD need to install a route for 10.0.0.0/16 subnet with nexthop to 169.254.1.1, as these traffic do not want goes to cfos, if remove this route, pod to pod communication will be send to cFOS as well
+* POD will need a route for ***10.0.0.0/16*** subnet with nexthop to ***169.254.1.1***, as the traffic do not want to go to **cFOS**.
+  * If the route is removed, POD to POD communication will be sent to **cFOS**.
 
+> Below command will create application deployment with ***label app=multitool01*** to the POD
 
-copy and paste below script on your client terminal to create application deployment, we label the pod will label app=multitool01
 
 ```
 cat << EOF | kubectl create -f -  
