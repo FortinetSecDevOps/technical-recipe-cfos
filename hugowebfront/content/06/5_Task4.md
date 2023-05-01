@@ -1,17 +1,20 @@
 ---
-title: "Task 4 - deploy actual constraint for cFOS network policy"
+title: "Task 4 - Deploy constraint for cFOS network policy"
 chapter: true
 weight: 5
 ---
 
-### Task 4 - deploy actual constraint for cFOS network policy
+### Task 4 - Deploy constraint for cFOS network policy
 
-* the kind must match the one defined in the template
-* the enforcementAction:deny means if condition met, the gatekeeper will not send it to kubernetes API
-* match/kinds/NetworkPolicy mean only watch for NetworkPlicy API
-* in parameters, we use label cfosegressfirewallpolicy. then a networkpolicy has same label will be checked
+1. ***Kind*** must match the one defined in the template.
 
-paste below to your client terminal 
+1. ***enforcementAction:deny*** means if condition met, the gatekeeper will not send it to kubernetes API.
+
+1. ***match/kinds/NetworkPolicy*** means only watch for ***NetworkPolicy API***.
+
+1. For parameters, we use label ***cfosegressfirewallpolicy***.
+
+> Use below script craete network policy 
 
 ```
 cat << EOF | kubectl create -f -
@@ -42,12 +45,13 @@ spec:
 EOF
 ```
 
-you shall see
+> output will be similar as below
 
 ```
 k8segressnetworkpolicytocfosutmpolicy.constraints.gatekeeper.sh/cfosnetworkpolicy created
 ```
-you can use `kubectl get k8segressnetworkpolicytocfosutmpolicy` to check 
+
+> you can use `kubectl get k8segressnetworkpolicytocfosutmpolicy` to check 
 
 ```
 ➜  policy git:(main) ✗ kubectl get k8segressnetworkpolicytocfosutmpolicy

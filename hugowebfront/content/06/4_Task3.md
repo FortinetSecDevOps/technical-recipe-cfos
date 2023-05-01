@@ -6,11 +6,14 @@ weight: 4
 
 ### Task 3 - Deploy constraintTemplate
 
-A ConstraintTemplate is a custom resource definition (CRD) used by the Gatekeeper project in Kubernetes. Gatekeeper is an open-source project that extends the Open Policy Agent (OPA) to provide policy enforcement and validation for Kubernetes clusters. 
-We use this CRD to validate the networkpolicy from gatekeeper admission controller. the ConstraintTemplate include Targets section which use rego to validate the rule.
-in our example. the target will call cFOS restful API to create firewall policy if condition met. otherwise, the network policy request will be send to kubernetes for creation. 
+A ***ConstraintTemplate*** is a custom resource definition (CRD) used by the Gatekeeper project in Kubernetes. Gatekeeper is an open-source project that extends the Open Policy Agent (OPA) to provide policy enforcement and validation for Kubernetes clusters.
 
-paste below to create ContraintTemplate
+We use this CRD to validate the ***networkpolicy*** from gatekeeper admission controller. The ConstraintTemplate include Targets section which use rego to validate the rule.
+
+{{< notice info >}}In the example, the target will call **cFOS** REST API to create firewall policy if condition is met, otherwise, the network policy request will be sent to kubernetes for creation. 
+{{< /notice >}}
+
+> Use below script to create ContraintTemplate
 
 ```
 cat << EOF | kubectl create -f -
@@ -201,7 +204,7 @@ spec:
 EOF
 ```
 
-you shall see
+> output will be similar as below
 
 ```
 constrainttemplate.templates.gatekeeper.sh/k8segressnetworkpolicytocfosutmpolicy created

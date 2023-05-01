@@ -1,15 +1,17 @@
 ---
-title: "Task 2 - install gatekeeperv3"
+title: "Task 2 - Install gatekeeperv3"
 chapter: true
 weight: 3
 ---
 
-### Task 2 - install gatekeeperv3
+### Task 2 - Install gatekeeperv3
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/open-policy-agent/gatekeeper/master/deploy/gatekeeper.yaml
 ```
-you shall see 
+
+> output will be similar as below
+
 ```
 namespace/gatekeeper-system created
 resourcequota/gatekeeper-critical-pods created
@@ -37,7 +39,7 @@ mutatingwebhookconfiguration.admissionregistration.k8s.io/gatekeeper-mutating-we
 validatingwebhookconfiguration.admissionregistration.k8s.io/gatekeeper-validating-webhook-configuration created
 ```
 
-wait until it ready
+> wait until it ready
 
 ```
 kubectl rollout status deployment/gatekeeper-audit -n gatekeeper-system && 

@@ -6,7 +6,7 @@ weight: 6
 
 ### Task 5 - Create egress network policy
 
-we create a normal egress network policy with label "cfosegressfirewallpolicy" to match contraint. 
+we create egress network policy with label ***cfosegressfirewallpolicy*** to match contraint. 
 
 ```
 cat << EOF | kubectl create -f -
@@ -32,7 +32,9 @@ spec:
       port: 80
 EOF
 ```
-you shall see output 
+
+> output will be similar as below
+
 ```
 Error from server (Forbidden): error when creating "STDIN": admission webhook "validation.gatekeeper.sh" denied the request: [cfosnetworkpolicy]
 {200 200  {{"name": "HTTP"}, {"name": "HTTPS"}, {"name": "PING"}}}

@@ -1,21 +1,27 @@
 ---
-title: "Task 1 - delete existing firewall policy and clientpod"
+title: "Task 1 - Delete firewall policy and clientpod"
 chapter: true
 weight: 2
 ---
 
 ### Task 1 - delete existing firewall policy and clientpod
 
-use eksctl to reduce the node to 1.  we will use restful API DNS name to config firewall policy on cFOS. unless all nodes use shared data storage like NFS. otherwise we have to reduce the number of nodes to 1. to make sure the restful API call sucess. 
+1. Use ***eksctl*** to reduce the node to 1.  
+
+1. We will use REST API's, DNS name to config firewall policy on **cFOS**. 
+
+1. Unless all nodes use shared data storage like NFS, otherwise we have to reduce the number of nodes to 1. 
+
+> **_NOTE:_** Make sure the response of the REST API's is Success (200 Status). 
 
 ```
 eksctl scale nodegroup DemoNodeGroup --cluster EKSDemo -N 1 -M 2 --region ap-east-1 && kubectl get node
 ```
 
-delete the clientpod
+> Delete the clientpod
 
 ```
 kubectl delete po/clientpod
 ```
 
-delete cFOS firewall policy on cFOS manually , so you do not have any firewall policy on cFOS
+> **_NOTE:_** Delete **cFOS** firewall policy on manually. Make sure there is no firewall policy on **cFOS**.
