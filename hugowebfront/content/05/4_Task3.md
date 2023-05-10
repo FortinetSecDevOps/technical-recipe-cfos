@@ -15,33 +15,38 @@ in this deployment, we use initContainers to insert a route for this POD.  this 
 
 > **_NOTE:_**  POD is assigned with a label ***app=newtest*** in this deployment. We use ***initContainers*** to insert a ***route*** for this POD. By this route, POD to POD traffic from ***eth0*** will traverse through ***aws VPC CNI*** created cluster network but NOT through **cFOS**.
 
-```
+``` yaml
 cat << EOF | kubectl create -f -
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: testtest-deployment
   labels:
-      app: newtest
+    app: newtest
 spec:
   replicas: 2
   selector:
     matchLabels:
-        app: newtest
+      app: newtest
   template:
     metadata:
       labels:
         app: newtest
       annotations:
-        k8s.v1.cni.cncf.io/networks: '[ { "name": "cfosdefaultcni5",  "default-route": ["10.1.200.252"]  } ]'
+        k8s.v1.cni.cncf.io/networks: '[ { "name": "cfosdefaultcni5",  "default-route":
+          ["10.1.200.252"]  } ]'
     spec:
       initContainers:
-      - name: init-wait
-        image: alpine
-        command: ["sh", "-c", "ip route add 10.0.0.0/16 via 169.254.1.1"]
-        securityContext:
-          capabilities:
-            add: ["NET_ADMIN"]
+        - name: init-wait
+          image: alpine
+          command:
+            - sh
+            - -c
+            - ip route add 10.0.0.0/16 via 169.254.1.1
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
       containers:
         - name: newtest
           image: praqma/network-multitool

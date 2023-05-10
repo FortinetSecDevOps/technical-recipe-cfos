@@ -61,15 +61,15 @@ weight: 5
 
         cat <<EOF >  dockerpullsecret.yaml
         {
-        "apiVersion": "v1",
-        "kind": "Secret",
-        "metadata": {
-            "name": "dockerinterbeing"
-        },
-        "type": "kubernetes.io/dockerconfigjson",
-        "data": {
-            ".dockerconfigjson": "${ENCODED_CONFIG_DATA}"
-        }
+            "apiVersion": "v1",
+            "kind": "Secret",
+            "metadata": {
+                "name": "dockerinterbeing"
+            },
+            "type": "kubernetes.io/dockerconfigjson",
+            "data": {
+                ".dockerconfigjson": "${ENCODED_CONFIG_DATA}"
+            }
         }
         EOF
         ```

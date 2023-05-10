@@ -21,7 +21,7 @@ weight: 4
 
    > Paste the below code in the terminal window
 
-   ```
+   ``` yaml
    cat << EOF | kubectl create -f -
    apiVersion: "k8s.cni.cncf.io/v1"
    kind: NetworkAttachmentDefinition

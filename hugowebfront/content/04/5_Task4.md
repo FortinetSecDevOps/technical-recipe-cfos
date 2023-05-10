@@ -32,7 +32,7 @@ weight: 5
 
 > By using below code in your client terminal window, will create **cFOS** DaemonSet
 
-```
+``` yaml
 cat << EOF | kubectl create -f - 
 apiVersion: v1
 kind: Service
@@ -43,53 +43,56 @@ metadata:
   namespace: default
 spec:
   ports:
-  - port: 80
-    protocol: TCP
-    targetPort: 80
+    - port: 80
+      protocol: TCP
+      targetPort: 80
   selector:
     app: fos
   type: ClusterIP
 ---
-
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: fos-deployment
   labels:
-      app: fos
+    app: fos
 spec:
   selector:
     matchLabels:
-        app: fos
+      app: fos
   template:
     metadata:
       labels:
         app: fos
       annotations:
-        k8s.v1.cni.cncf.io/networks: '[ { "name": "cfosdefaultcni5",  "ips": [ "10.1.200.252/32" ], "mac": "CA:FE:C0:FF:00:02" } ]'
+        k8s.v1.cni.cncf.io/networks: '[ { "name": "cfosdefaultcni5",  "ips": [
+          "10.1.200.252/32" ], "mac": "CA:FE:C0:FF:00:02" } ]'
     spec:
       containers:
-      - name: fos
-        image: interbeing/fos:v7231x86
-        securityContext:
-          capabilities:
-              add: ["NET_ADMIN","SYS_ADMIN","NET_RAW"]
-        ports:
-        - name: isakmp
-          containerPort: 500
-          protocol: UDP
-        - name: ipsec-nat-t
-          containerPort: 4500
-          protocol: UDP
-        volumeMounts:
-        - mountPath: /data
-          name: data-volume
+        - name: fos
+          image: interbeing/fos:v7231x86
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+                - SYS_ADMIN
+                - NET_RAW
+          ports:
+            - name: isakmp
+              containerPort: 500
+              protocol: UDP
+            - name: ipsec-nat-t
+              containerPort: 4500
+              protocol: UDP
+          volumeMounts:
+            - mountPath: /data
+              name: data-volume
       imagePullSecrets:
-      - name: dockerinterbeing
+        - name: dockerinterbeing
       volumes:
-      - name: data-volume
-        hostPath:
-          path: /cfosdata
-          type: DirectoryOrCreate
+        - name: data-volume
+          hostPath:
+            path: /cfosdata
+            type: DirectoryOrCreate
 EOF
 ```  

@@ -31,14 +31,14 @@ cat <<EOF >cfos_license.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
-    name: fos-license
-    labels:
-        app: fos
-        category: license
+  name: fos-license
+  labels:
+    app: fos
+    category: license
 data:
-    license: |
-     -----BEGIN FGT VM LICENSE-----
-     $licensestring
-     -----END FGT VM LICENSE-----
+  license: |
+    -----BEGIN FGT VM LICENSE-----
+    $licensestring
+    -----END FGT VM LICENSE-----
 EOF
 ```

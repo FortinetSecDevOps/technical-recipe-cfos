@@ -23,7 +23,7 @@ this pod also monitor the node number change, if work node increased or decrease
 
 copy and paste below script to your terminal window to create clientpod. this clientpod is mainly use kubectl client to obtain the POD ip address with label and namespace, then use curl to update the cFOS addressgroup to keep the ip address in cFOS to sync with application POD in kubernetes. I have already build the image for this clientpod and put it on dockerhub. so we can directly create POD with that image. 
 
-```
+``` yaml
 cat << EOF | kubectl create -f -
 apiVersion: v1
 kind: ServiceAccount

@@ -16,7 +16,7 @@ weight: 5
 
 > Use below script craete network policy 
 
-```
+``` yaml
 cat << EOF | kubectl create -f -
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sEgressNetworkPolicyToCfosUtmPolicy

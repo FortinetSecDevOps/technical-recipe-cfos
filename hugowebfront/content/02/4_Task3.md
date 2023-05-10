@@ -28,28 +28,28 @@ weight: 4
 
     > **_NOTE:_** Run/execute below script on your client terminal to create eks cluster 
 
-    ```
-    cat << EOF | eksctl create cluster -f -
-    apiVersion: eksctl.io/v1alpha5
-    availabilityZones:
-    - ap-east-1b
-    - ap-east-1a
-    cloudWatch:
-    clusterLogging: {}
-    iam:
-    vpcResourceControllerPolicy: true
-    withOIDC: false
-    kind: ClusterConfig
-    kubernetesNetworkConfig:
-    ipFamily: IPv4
-    serviceIPv4CIDR: 10.96.0.0/12
-    managedNodeGroups:
-    - amiFamily: AmazonLinux2
+``` yaml
+cat << EOF | eksctl create cluster -f -
+apiVersion: eksctl.io/v1alpha5
+availabilityZones:
+  - ap-east-1b
+  - ap-east-1a
+cloudWatch:
+  clusterLogging: {}
+iam:
+  vpcResourceControllerPolicy: true
+  withOIDC: false
+kind: ClusterConfig
+kubernetesNetworkConfig:
+  ipFamily: IPv4
+  serviceIPv4CIDR: 10.96.0.0/12
+managedNodeGroups:
+  - amiFamily: AmazonLinux2
     desiredCapacity: 1
     disableIMDSv1: false
     disablePodIMDS: false
     iam:
-        withAddonPolicies:
+      withAddonPolicies:
         albIngress: false
         appMesh: false
         appMeshPreview: false
@@ -65,46 +65,46 @@ weight: 4
         xRay: false
     instanceSelector: {}
     instanceTypes:
-    - t3.large
+      - t3.large
     labels:
-        alpha.eksctl.io/cluster-name: EKSDemo
-        alpha.eksctl.io/nodegroup-name: DemoNodeGroup
+      alpha.eksctl.io/cluster-name: EKSDemo
+      alpha.eksctl.io/nodegroup-name: DemoNodeGroup
     maxSize: 2
     minSize: 1
     name: DemoNodeGroup
     privateNetworking: false
     releaseVersion: ""
     securityGroups:
-        withLocal: null
-        withShared: null
+      withLocal: null
+      withShared: null
     ssh:
-        allow: true
-        publicKeyPath: ~/.ssh/id_rsa.pub
+      allow: true
+      publicKeyPath: ~/.ssh/id_rsa.pub
     tags:
-        alpha.eksctl.io/nodegroup-name: DemoNodeGroup
-        alpha.eksctl.io/nodegroup-type: managed
+      alpha.eksctl.io/nodegroup-name: DemoNodeGroup
+      alpha.eksctl.io/nodegroup-type: managed
     volumeIOPS: 3000
     volumeSize: 80
     volumeThroughput: 125
     volumeType: gp3
-    metadata:
-    name: EKSDemo
-    region: ap-east-1
-    version: "1.25"
-    privateCluster:
-    enabled: false
-    skipEndpointCreation: false
-    vpc:
-    autoAllocateIPv6: false
-    cidr: 10.0.0.0/16
-    clusterEndpoints:
-        privateAccess: false
-        publicAccess: true
-    manageSharedNodeSecurityGroupRules: true
-    nat:
-        gateway: Single
-    EOF
-    ```
+metadata:
+  name: EKSDemo
+  region: ap-east-1
+  version: "1.25"
+privateCluster:
+  enabled: false
+  skipEndpointCreation: false
+vpc:
+  autoAllocateIPv6: false
+  cidr: 10.0.0.0/16
+  clusterEndpoints:
+    privateAccess: false
+    publicAccess: true
+  manageSharedNodeSecurityGroupRules: true
+  nat:
+    gateway: Single
+EOF
+```
 
 1. Validate EKS cluster 
 

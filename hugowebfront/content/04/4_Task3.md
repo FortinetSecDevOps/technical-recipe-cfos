@@ -21,63 +21,68 @@ Use the below copy and paste below code to your client terminal window to create
 
 > By using below code in your client terminal window, will create role for **cFOS**
 
-   ```
-   cat << EOF | kubectl create -f - 
-   apiVersion: rbac.authorization.k8s.io/v1
-   kind: ClusterRole
-   metadata:
-   namespace: default
-   name: configmap-reader
-   rules:
-   - apiGroups: [""]
-   resources: ["configmaps"]
-   verbs: ["get", "watch", "list"]
+``` yaml
+cat << EOF | kubectl create -f - 
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata: null
+namespace: default
+name: configmap-reader
+rules:
+  - apiGroups:
+      - ""
+resources:
+  - configmaps
+verbs:
+  - get
+  - watch
+  - list
+---
 
-   ---
-
-   apiVersion: rbac.authorization.k8s.io/v1
-   kind: RoleBinding
-   metadata:
-   name: read-configmaps
-   namespace: default
-   subjects:
-   - kind: ServiceAccount
-   name: default
-   apiGroup: ""
-   roleRef:
-   kind: ClusterRole
-   name: configmap-reader
-   apiGroup: ""
-
-   ---
-
-   apiVersion: rbac.authorization.k8s.io/v1
-   kind: ClusterRole
-   metadata:
-      namespace: default
-      name: secrets-reader
-   rules:
-   - apiGroups: [""] # "" indicates the core API group
-   resources: ["secrets"]
-   verbs: ["get", "watch", "list"]
-
-   ---
-
-   apiVersion: rbac.authorization.k8s.io/v1
-   kind: RoleBinding
-   metadata:
-   name: read-secrets
-   namespace: default
-   subjects:
-   - kind: ServiceAccount
-   name: default
-   apiGroup: ""
-   roleRef:
-   kind: ClusterRole
-   name: secrets-reader
-   apiGroup: ""
-   EOF
-   ```
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-configmaps
+  namespace: default
+subjects:
+- kind: ServiceAccount
+  name: default
+  apiGroup: ""
+roleRef:
+  kind: ClusterRole
+  name: configmap-reader
+  apiGroup: ""
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  namespace: default
+  name: secrets-reader
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - secrets
+    verbs:
+      - get
+      - watch
+      - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-secrets
+  namespace: default
+subjects:
+  - kind: ServiceAccount
+    name: default
+    apiGroup: ""
+roleRef:
+  kind: ClusterRole
+  name: secrets-reader
+  apiGroup: ""
+EOF
+```
 
 > output will be similar as below
 

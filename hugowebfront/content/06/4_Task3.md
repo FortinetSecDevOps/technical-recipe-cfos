@@ -15,7 +15,7 @@ We use this CRD to validate the ***networkpolicy*** from gatekeeper admission co
 
 > Use below script to create ContraintTemplate
 
-```
+``` yaml
 cat << EOF | kubectl create -f -
 apiVersion: templates.gatekeeper.sh/v1beta1
 kind: ConstraintTemplate

@@ -8,7 +8,7 @@ weight: 6
 
 we create egress network policy with label ***cfosegressfirewallpolicy*** to match contraint. 
 
-```
+``` yaml
 cat << EOF | kubectl create -f -
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy

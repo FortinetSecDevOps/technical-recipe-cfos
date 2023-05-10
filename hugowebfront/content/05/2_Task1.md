@@ -20,25 +20,26 @@ weight: 2
 > Below command will create application deployment with ***label app=multitool01*** to the POD
 
 
-```
+``` yaml
 cat << EOF | kubectl create -f -  
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: multitool01-deployment
   labels:
-      app: multitool01
+    app: multitool01
 spec:
   replicas: 4
   selector:
     matchLabels:
-        app: multitool01
+      app: multitool01
   template:
     metadata:
       labels:
         app: multitool01
       annotations:
-        k8s.v1.cni.cncf.io/networks: '[ { "name": "cfosdefaultcni5",  "default-route": ["10.1.200.252"]  } ]'
+        k8s.v1.cni.cncf.io/networks: '[ { "name": "cfosdefaultcni5",  "default-route":
+          ["10.1.200.252"]  } ]'
     spec:
       containers:
         - name: multitool01
@@ -47,7 +48,8 @@ spec:
           args:
             - /bin/sh
             - -c
-            - ip route add 10.0.0.0/16  via 169.254.1.1; /usr/sbin/nginx -g "daemon off;"
+            - ip route add 10.0.0.0/16  via 169.254.1.1; /usr/sbin/nginx -g
+              "daemon off;"
           securityContext:
             privileged: true
 EOF
