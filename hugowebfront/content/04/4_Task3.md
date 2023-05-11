@@ -25,9 +25,9 @@ Use the below copy and paste below code to your client terminal window to create
 cat << EOF | kubectl create -f - 
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
-metadata: null
-namespace: default
-name: configmap-reader
+metadata:
+  namespace: default
+  name: configmap-reader
 rules:
   - apiGroups:
       - ""

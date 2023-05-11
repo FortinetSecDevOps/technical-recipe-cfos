@@ -28,13 +28,13 @@ Amazon EKS supports Multus, a Container Network Interface (CNI) plugin that enab
    The repository include multus installation yaml file. It is the standard multus yaml file with 3.9.3 stable release image.
 
    ```
-   git clone https://github.com/yagosys/202301.git 
+   git clone https://github.com/FortinetSecDevOps/technical-recipe-cfos.git
    ```
 
 1. install multus using yaml file 
 
    ```
-   kubectl create -f 202301/deployment/k8s/multus-daemonset-stable.yml
+   kubectl create -f technical-recipe-cfos/deployment_files/k8s/multus-daemonset-stable.yml
    ```
 
 1. Validate multus installation 

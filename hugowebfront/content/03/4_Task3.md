@@ -21,28 +21,28 @@ weight: 4
 
    > Paste the below code in the terminal window
 
-   ``` yaml
-   cat << EOF | kubectl create -f -
-   apiVersion: "k8s.cni.cncf.io/v1"
-   kind: NetworkAttachmentDefinition
-   metadata:
-   name: cfosdefaultcni5
-   spec:
-   config: '{
+``` yaml
+cat << EOF | kubectl create -f -
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: cfosdefaultcni5
+spec:
+  config: '{
          "cniVersion": "0.3.0",
          "type": "macvlan",
          "master": "eth0",
          "mode": "bridge",
          "ipam": {
-         "type": "host-local",
-         "subnet": "10.1.200.0/24",
-         "rangeStart": "10.1.200.20",
-         "rangeEnd": "10.1.200.253",
-         "gateway": "10.1.200.1"
+            "type": "host-local",
+            "subnet": "10.1.200.0/24",
+            "rangeStart": "10.1.200.20",
+            "rangeEnd": "10.1.200.253",
+            "gateway": "10.1.200.1"
          }
       }'
-   EOF
-   ```
+EOF
+```
 
 1. Validate CRD installation
 
